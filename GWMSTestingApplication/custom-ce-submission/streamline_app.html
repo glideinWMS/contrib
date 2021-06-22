@@ -1,0 +1,28 @@
+<html>
+    
+    <head>
+        <title>Job Submission </title>
+    </head>
+
+    <body>
+        <h1>Please Submit Your Jobs Below</h1>
+        
+        <form action="/submit" method="POST" enctype="multipart/form-data">
+            <label for="jobs">Number of Jobs:</label>
+            <input type="text" id="payload" name="payload"><br>
+
+            <label for="arguments">Argument Values:</label>
+            <input type="text" id="args" name="args"><br>
+            
+            
+            <p><label for="executable">Upload Executable File:</label>
+            <input type="file" name="file"></p>
+
+            <input type="submit" value="Submit">
+
+        </form>
+
+        <p><a href=[QUEUE_URL]>Access Current Job Queue</a></p>
+    </body>
+
+</html>
