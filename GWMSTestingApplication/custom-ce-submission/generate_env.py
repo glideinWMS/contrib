@@ -3,18 +3,11 @@
 import os
 import socket
 import htcondor
+import argparse
 
 from glideinwms.factory import glideFactoryConfig as gfc
 from glideinwms.factory.glideFactoryLib import ClientWeb, get_submit_environment
 from glideinwms.factory.glideFactoryCredentials import SubmitCredentials, validate_frontend
-
-nJobs           = 10
-idleLifetime    = 3600
-targetEntry     = "COIMBRA_TEST_CE"
-clientName      = "test.test"
-frontendName    = "vofrontend_service"
-wmsCollector    = socket.gethostname()
-factoryWorkDir  = "/var/lib/gwms-factory/work-dir/"
 
 def get_ads(collector, frontendName, targetEntry):
     constraint = 'MyType=="glideclient" && regexp("^%s@.*$", AuthenticatedIdentity) && regexp("^%s@.*$", ReqName)' \
@@ -26,9 +19,16 @@ def get_ads(collector, frontendName, targetEntry):
 
     return ads
 
-if __name__ == "__main__":
-    rootDir = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(factoryWorkDir)
+def generate_env(
+        nJobs           = 10,
+        idleLifetime    = 3600,
+        targetEntry     = "fermicloud528",
+        clientName      = "test.test",
+        frontendName    = "vofrontend_service",
+        wmsCollector    = socket.gethostname()
+    ):
+    cwd = os.getcwd()
+    os.chdir("/var/lib/gwms-factory/work-dir/")
 
     glideinDescript = gfc.GlideinDescript()
     frontendDescript = gfc.FrontendDescript()
@@ -75,6 +75,19 @@ if __name__ == "__main__":
     env = get_submit_environment(**params)
     env.append(f"GLIDEIN_COUNT={nJobs}")
 
+    os.chdir(cwd)
+
+    return env
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--entry", help="Target entry")
+    parser.add_argument("--frontend", help="Frontend to impersonate")
+    args = parser.parse_args()
+
+    env = generate_env()
+
+    rootDir = os.path.dirname(os.path.abspath(__file__))
     os.chdir(rootDir)
     with open("job.env", "w") as fd:
         for line in env:
