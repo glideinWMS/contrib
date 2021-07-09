@@ -1,7 +1,7 @@
 .vscode
-job.env
 job.mod.condor
 sandbox
-credential_fermicloud390.main_388287
+log
 logs
+legacy
 __pycache__

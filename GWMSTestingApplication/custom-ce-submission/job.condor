@@ -1,7 +1,7 @@
 # File: job.condor
 #
 Universe = grid
-Grid_Resource = condor fermicloud367.fnal.gov fermicloud367.fnal.gov:9619
+Grid_Resource = condor fermicloud528.fnal.gov fermicloud528.fnal.gov:9619
 Executable = $ENV(GLIDEIN_EXECUT_TEST)
 copy_to_spool = True
 Arguments = $ENV(ARGUMENTS)
