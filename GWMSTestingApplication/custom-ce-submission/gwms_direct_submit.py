@@ -23,9 +23,9 @@ print(f"Script root directory: {ROOT_DIR}")
 def make_condor(args):
     jobconFile = "/var/lib/gwms-factory/work-dir/" + str(args.GLIDEIN_ENTRY_NAME) + "/job.condor"
     sub_list = [
-        (r"Log\s=\s.*", "Log = $ENV(LOGFILE)"),
+        (r"\bLog\s=\s.*", "Log = $ENV(LOGFILE)"),
         (r"\bOutput\s=\s.*", "Output = $ENV(OUTPUTFILE)"),
-        (r"Error\s=\s.*", "Error = $ENV(ERRORFILE)")
+        (r"\bError\s=\s.*", "Error = $ENV(ERRORFILE)")
     ]
     tf = tempfile.NamedTemporaryFile("w", delete=False)
     file = open(jobconFile, "r").read()
