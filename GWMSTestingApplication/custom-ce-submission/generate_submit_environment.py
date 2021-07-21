@@ -28,7 +28,7 @@ def get_ads(collector, frontendName, targetEntry):
 
 def generate_submit_environment(
     idleLifetime=3600,
-    targetEntry="fermicloud528",
+    targetEntry="fermicloud489",
     clientName="test.test",
     frontendName="vofrontend_service",
     wmsCollector=socket.gethostname(),

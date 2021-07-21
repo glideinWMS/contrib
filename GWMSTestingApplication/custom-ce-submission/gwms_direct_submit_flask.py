@@ -2,7 +2,7 @@ import os
 import re
 import datetime
 import uuid
-import streamline_application_module as submod #submission module
+import gwms_direct_submit as submod #submission module
 from zipfile import ZipFile
 from os.path import basename
 from types import SimpleNamespace
