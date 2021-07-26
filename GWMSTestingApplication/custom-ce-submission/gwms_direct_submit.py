@@ -80,21 +80,20 @@ def make_environment(args):
     env["OUTPUTFILE"] = outFile
     env["ERRORFILE"] = errorFile
     env["EXECUTABLE"] = execFile
-    env["ARGUMENTS"] = str(args.ARGUMENT)
+    env["ARGUMENTS"] = str(" ".join(exec_args))
 
     return env
 
 if __name__ == "__main__":
     # Parse arguments from the terminal
     parser = argparse.ArgumentParser(description="Process this condor job")
-    parser.add_argument('--entry', dest='ENTRY_NAME')
-    parser.add_argument('--logfile', dest='LOGFILE')
-    parser.add_argument('--outfile', dest='OUTPUTFILE')
-    parser.add_argument('--errfile', dest='ERRORFILE')
-    parser.add_argument('-n', dest='GLIDEIN_COUNT', type=int)
-    parser.add_argument('EXECUTABLE')
-    parser.add_argument('ARGUMENT', type=str, nargs='*')
-    args = parser.parse_args()
+    parser.add_argument('--logfile', dest='LOGFILE', default='job.log')
+    parser.add_argument('--outfile', dest='OUTPUTFILE', default='job.out')
+    parser.add_argument('--errfile', dest='ERRORFILE', default='job.err')
+    parser.add_argument('-n', dest='GLIDEIN_COUNT', type=int, default=1)
+    parser.add_argument('ENTRY_NAME')
+    parser.add_argument('EXECUTABLE', metavar='EXECUTABLE [ARGUMENTS]')
+    args, exec_args = parser.parse_known_args()
 
     env = make_environment(args)
     condor = make_condor(args)
