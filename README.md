@@ -12,6 +12,6 @@ One line added to the following list will help identify your project.
 
 Projects:
 * _example\_ : example project
-
+* AIforJobSiteAllocation: artificial intelligence for solving the problem of the job/site allocation.
 
 **NB This repository is public, do not add any credential, password, or private information.**
