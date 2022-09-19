@@ -1,4 +1,4 @@
-table_raw = read.csv("dataset_classification.csv")
+table_raw = read.csv("../data/dataset_classification.csv")
 table_raw <- data.frame(table_raw[,-1], row.names = table_raw[,1])
 
 # Remove rows with NA values
