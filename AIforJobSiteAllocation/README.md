@@ -10,6 +10,6 @@ The memory and CPU amount forecasting is performed using a time series analysis 
 The probability calculation and failure prediction is performed with probablistic classifiers (analysis in the classification folder).
 A scraper script is present in order to extract data.
 
-Datasets can be found at: https://zenodo.org/record/7097223#.YynPwi9aZQI.
+Datasets can be found at: https://zenodo.org/record/7097554#.Yyns5C9aZQI.
 Download the datasets and place them in the data folder. 
 The raw dataset should be autonomously scraped.
